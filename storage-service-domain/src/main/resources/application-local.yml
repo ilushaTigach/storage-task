@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: storage-service-domain
+  datasource:
+    url: jdbc:postgresql://localhost:5432/storage
+    username: root
+    password: ${PWD}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  liquibase:
+    change-log: db/changelog/db.changelog-master.yaml
+server:
+  port: ${SERVER_PORT:8081}

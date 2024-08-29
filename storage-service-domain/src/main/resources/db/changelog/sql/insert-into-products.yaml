@@ -1,0 +1,35 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-into-products
+      author: Telyatenko-Ilay
+      changes:
+        - insert:
+            tableName: products
+            columns:
+              - column:
+                  name: id
+                  value: 2d30f1c3-e70d-42a0-a3d3-58a5c2d50d04
+              - column:
+                  name: title
+                  value: PS5
+              - column:
+                  name: article
+                  value: ABC-123
+              - column:
+                  name: description
+                  value: Simple description
+              - column:
+                  name: product_type
+                  value: 2
+              - column:
+                  name: price
+                  value: 55000
+              - column:
+                  name: quantity
+                  value: 10
+              - column:
+                  name: last_modified
+                  value: 2024-08-27 16:41:40.581
+              - column:
+                  name: created_ad
+                  value: 2024-08-27 16:41:40.581

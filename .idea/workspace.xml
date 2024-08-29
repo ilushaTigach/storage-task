@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8fa1b4b5-fbcc-433f-8769-1ac649f0a9f5" name="Changes" comment="initial commit" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="JUnit5 Test Class" />
+        <option value="Class" />
+        <option value="Interface" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="develop" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="2lErQXzrTyjZLe0P9Cjgr4bttkE" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Docker.Dockerfile.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.resources/Dockerfile.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.storage-service-domain.app: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.storage-service-domain.storage-task: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.storage-service-domain/src/main/resources/Dockerfile build.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.storage-service-domain: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.storage-sevice-domain: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ProductServiceTest.testDeleteProductById.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ProductServiceTest.testDeleteProductByIdNotFound.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ProductServiceTest.testFindAllProducts.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ProductServiceTest.testFindProductById.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ProductServiceTest.testFindProductByIdNotFound.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ProductServiceTest.testSaveProduct.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ProductServiceTest.testUpdateProduct.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ProductServiceTest.testUpdateProductNotFound.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StorageSeviceDomainApplicationTests.contextLoads.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.storage-service-domain [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.storage-service-domain [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.storage-task [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.storage-task [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.storage-task [org.apache.maven.plugins:maven-install-plugin:3.1.3:install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.storage-task [package].executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;Spring Boot.StorageServiceApiApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.StorageServiceDomainApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.StorageSeviceDomainApplication.executor&quot;: &quot;Run&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;21&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/ILay/IdeaProjects/project-storage&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="org.telatenko.storagesevicedomain.services" />
+      <recent name="org.telatenko.storagesevicedomain.controllers" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\ILay\IdeaProjects\storage-task\storage-service-domain\src\main\resources\templates" />
+      <recent name="C:\Users\ILay\IdeaProjects\storage-task\storage-service-api\src\main\java\org\telatenko\storageserviceapi" />
+      <recent name="C:\Users\ILay\IdeaProjects\storage-task\storage-service-domain\src\main\java\org\telatenko\storagesevicedomain" />
+      <recent name="C:\Users\ILay\IdeaProjects\storage-task\storage-sevice-domain\src\main\resources\db\changelog\sql" />
+      <recent name="C:\Users\ILay\IdeaProjects\storage-task\storage-sevice-domain\src\main\resources\db\changelog" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\ILay\IdeaProjects\storage-task" />
+      <recent name="C:\Users\ILay\IdeaProjects\storage-task\storage-service-domain\src\main\resources" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="org.telatenko.storagesevicedomain.repositories" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="org.telatenko.storagesevicedomain.services" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.telatenko.storageserviceapi.dto" />
+      <recent name="org.telatenko.storagesevicedomain.exeption" />
+      <recent name="org.telatenko.storagesevicedomain.mappers" />
+      <recent name="org.telatenko.storagesevicedomain.dto" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="MicronautRunConfigurationType" />
+        <option value="QuarkusRunConfigurationType" />
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.StorageServiceDomainApplication">
+    <configuration name="StorageSeviceDomainApplicationTests.contextLoads" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="storage-service-domain" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.telatenko.storagesevicedomain.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.telatenko.storagesevicedomain" />
+      <option name="MAIN_CLASS_NAME" value="org.telatenko.storagesevicedomain.StorageSeviceDomainApplicationTests" />
+      <option name="METHOD_NAME" value="contextLoads" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StorageServiceApiApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="storage-service-api" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.telatenko.storageserviceapi.StorageServiceApiApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StorageServiceDomainApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <envs>
+        <env name="server.port" value="8080" />
+        <env name="spring.profailes.active" value="default" />
+        <env name="PWD" value="123" />
+      </envs>
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="storage-service-domain" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.telatenko.storagesevicedomain.StorageServiceDomainApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Dockerfile" type="docker-deploy" factoryName="dockerfile" temporary="true" server-name="Docker">
+      <deployment type="dockerfile">
+        <settings>
+          <option name="sourceFilePath" value="Dockerfile" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
+      <deployment type="docker-compose.yml">
+        <settings />
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="dockerfile" temporary="true">
+      <deployment type="dockerfile">
+        <settings />
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="resources/Dockerfile" type="docker-deploy" factoryName="dockerfile" temporary="true" server-name="Docker">
+      <deployment type="dockerfile">
+        <settings>
+          <option name="sourceFilePath" value="storage-service-domain/src/main/resources/Dockerfile" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="storage-service-domain: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="sourceFilePath" value="storage-service-domain/docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="storage-service-domain.app: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="app" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="storage-service-domain/docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Docker.Dockerfile" />
+      <item itemvalue="Docker.resources/Dockerfile" />
+      <item itemvalue="Docker.storage-service-domain.app: Compose Deployment" />
+      <item itemvalue="Docker.storage-service-domain: Compose Deployment" />
+      <item itemvalue="JUnit.StorageSeviceDomainApplicationTests.contextLoads" />
+      <item itemvalue="Spring Boot.StorageServiceApiApplication" />
+      <item itemvalue="Spring Boot.StorageServiceDomainApplication" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Docker.storage-service-domain: Compose Deployment" />
+        <item itemvalue="Docker.Dockerfile" />
+        <item itemvalue="JUnit.StorageSeviceDomainApplicationTests.contextLoads" />
+        <item itemvalue="Docker.storage-service-domain.app: Compose Deployment" />
+        <item itemvalue="Docker.resources/Dockerfile" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8fa1b4b5-fbcc-433f-8769-1ac649f0a9f5" name="Changes" comment="" />
+      <created>1724756062071</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1724756062071</updated>
+      <workItem from="1724756063143" duration="14416000" />
+      <workItem from="1724775083351" duration="9162000" />
+      <workItem from="1724819540844" duration="33993000" />
+      <workItem from="1724858012033" duration="10354000" />
+      <workItem from="1724904617946" duration="6312000" />
+    </task>
+    <task id="LOCAL-00001" summary="initial commit">
+      <option name="closed" value="true" />
+      <created>1724910180272</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1724910180272</updated>
+    </task>
+    <task id="LOCAL-00002" summary="initial commit">
+      <option name="closed" value="true" />
+      <created>1724926566383</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1724926566383</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="initial commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="initial commit" />
+  </component>
+</project>
