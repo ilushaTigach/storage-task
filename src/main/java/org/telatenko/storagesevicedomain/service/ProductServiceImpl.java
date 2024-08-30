@@ -24,7 +24,6 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-@Validated
 public class ProductServiceImpl implements ProductService{
 
     private final ProductRepository productRepository;
@@ -44,7 +43,7 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Transactional
-    public UUID saveProduct(@Valid final ProductDto productDto) {
+    public UUID saveProduct(final ProductDto productDto) {
 
         String article = productDto.getArticle();
         if (article != null) {
@@ -60,13 +59,13 @@ public class ProductServiceImpl implements ProductService{
         return productRepository.save(productEntity).getId();
     }
 
-    public void deleteProductById(@Valid final UUID id) {
+    public void deleteProductById(final UUID id) {
         productRepository.findById(id).orElseThrow(() -> new DeleteObjectExeption());
         productRepository.deleteById(id);
     }
 
     @Transactional
-    public UUID updateProduct(@Valid final UUID id, @Valid final UpdateProductDto updateProductDto) {
+    public UUID updateProduct(final UUID id, final UpdateProductDto updateProductDto) {
         ProductEntity productEntity = productRepository.findById(id)
                 .orElseThrow(() -> new NotFoundProductException("id", id.toString()));
 

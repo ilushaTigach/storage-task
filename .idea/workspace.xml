@@ -4,46 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8fa1b4b5-fbcc-433f-8769-1ac649f0a9f5" name="Changes" comment="initial commit&#10;Сделал: CRUD, миграции Liquibase">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+    <list default="true" id="8fa1b4b5-fbcc-433f-8769-1ac649f0a9f5" name="Changes" comment="commit №2&#10;-Миграции переписаны в sql и xml&#10;-application-local теперь рабоатет&#10;-Сделал Dockerfile и docker-compose.yml&#10;-Тесты пока что не писал &#10;-Не понял как сделать Пагинацию праввильно, чтобы из коробки доставлась">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage-service-domain/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage-service-domain/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage-service-domain/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage-service-domain/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/mvnw" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage-service-domain/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/mvnw.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage-service-domain/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage-service-domain/readme.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage-service-domain/src/main/java/org/telatenko/storagesevicedomain/StorageServiceDomainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/telatenko/storagesevicedomain/StorageTaskApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage-service-domain/src/main/java/org/telatenko/storagesevicedomain/controllers/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/telatenko/storagesevicedomain/controller/ProductControllerImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage-service-domain/src/main/java/org/telatenko/storagesevicedomain/dto/ProductDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/telatenko/storagesevicedomain/dto/ProductDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage-service-domain/src/main/java/org/telatenko/storagesevicedomain/dto/ProductType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/telatenko/storagesevicedomain/modelType/ProductType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage-service-domain/src/main/java/org/telatenko/storagesevicedomain/exeption/NotFoundProductException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/telatenko/storagesevicedomain/exeption/NotFoundProductException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage-service-domain/src/main/java/org/telatenko/storagesevicedomain/exeption/ResponseError.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/telatenko/storagesevicedomain/exeption/ResponseError.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage-service-domain/src/main/java/org/telatenko/storagesevicedomain/handler/ExceptionHandlerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/telatenko/storagesevicedomain/exeption/ExceptionHandlerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage-service-domain/src/main/java/org/telatenko/storagesevicedomain/mappers/CreateProductMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/telatenko/storagesevicedomain/mapper/CreateProductMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage-service-domain/src/main/java/org/telatenko/storagesevicedomain/mappers/FindAllProductsMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/telatenko/storagesevicedomain/mapper/FindAllProductsMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage-service-domain/src/main/java/org/telatenko/storagesevicedomain/mappers/ReadProductMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/telatenko/storagesevicedomain/mapper/ReadProductMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage-service-domain/src/main/java/org/telatenko/storagesevicedomain/mappers/UpdateProductMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/telatenko/storagesevicedomain/mapper/UpdateProductMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage-service-domain/src/main/java/org/telatenko/storagesevicedomain/models/CreateProductRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/telatenko/storagesevicedomain/model/CreateProductRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage-service-domain/src/main/java/org/telatenko/storagesevicedomain/models/ProductEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/telatenko/storagesevicedomain/persistence/ProductEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage-service-domain/src/main/java/org/telatenko/storagesevicedomain/models/ProductResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/telatenko/storagesevicedomain/model/ProductResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage-service-domain/src/main/java/org/telatenko/storagesevicedomain/models/UpdateProductDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/telatenko/storagesevicedomain/dto/UpdateProductDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage-service-domain/src/main/java/org/telatenko/storagesevicedomain/models/UpdateProductRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/telatenko/storagesevicedomain/model/UpdateProductRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage-service-domain/src/main/java/org/telatenko/storagesevicedomain/repositories/ProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/telatenko/storagesevicedomain/persistence/ProductRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage-service-domain/src/main/java/org/telatenko/storagesevicedomain/resources/ProductResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/telatenko/storagesevicedomain/controller/ProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage-service-domain/src/main/java/org/telatenko/storagesevicedomain/services/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/telatenko/storagesevicedomain/service/ProductServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage-service-domain/src/main/resources/application-local.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-local.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage-service-domain/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage-service-domain/src/main/resources/db/changelog/db.changelog-master.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage-service-domain/src/main/resources/db/changelog/sql/create-table-products.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage-service-domain/src/main/resources/db/changelog/sql/insert-into-products.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage-service-domain/src/test/java/org/telatenko/storagesevicedomain/StorageSeviceDomainApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/telatenko/storagesevicedomain/StorageTaskApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/telatenko/storagesevicedomain/service/ProductServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/telatenko/storagesevicedomain/service/ProductServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,9 +17,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="JUnit5 Test Class" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -87,63 +50,63 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Docker.Dockerfile.executor": "Run",
-    "Docker.docker-compose.yml.app: Compose Deployment.executor": "Run",
-    "Docker.docker-compose.yml.storage: Compose Deployment.executor": "Run",
-    "Docker.docker-compose.yml: Compose Deployment.executor": "Run",
-    "Docker.resources/Dockerfile.executor": "Run",
-    "Docker.storage-service-domain.app: Compose Deployment.executor": "Run",
-    "Docker.storage-service-domain.storage-task: Compose Deployment.executor": "Run",
-    "Docker.storage-service-domain/src/main/resources/Dockerfile build.executor": "Run",
-    "Docker.storage-service-domain: Compose Deployment.executor": "Run",
-    "Docker.storage-sevice-domain: Compose Deployment.executor": "Run",
-    "JUnit.ProductServiceTest.testDeleteProductById.executor": "Run",
-    "JUnit.ProductServiceTest.testDeleteProductByIdNotFound.executor": "Run",
-    "JUnit.ProductServiceTest.testFindAllProducts.executor": "Run",
-    "JUnit.ProductServiceTest.testFindProductById.executor": "Run",
-    "JUnit.ProductServiceTest.testFindProductByIdNotFound.executor": "Run",
-    "JUnit.ProductServiceTest.testSaveProduct.executor": "Run",
-    "JUnit.ProductServiceTest.testUpdateProduct.executor": "Run",
-    "JUnit.ProductServiceTest.testUpdateProductNotFound.executor": "Run",
-    "JUnit.StorageSeviceDomainApplicationTests.contextLoads.executor": "Run",
-    "Maven.storage-service-domain [clean].executor": "Run",
-    "Maven.storage-service-domain [install].executor": "Run",
-    "Maven.storage-task [clean].executor": "Run",
-    "Maven.storage-task [install].executor": "Run",
-    "Maven.storage-task [org.apache.maven.plugins:maven-install-plugin:3.1.1:install].executor": "Run",
-    "Maven.storage-task [org.apache.maven.plugins:maven-install-plugin:3.1.3:install].executor": "Run",
-    "Maven.storage-task [package].executor": "Run",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "Spring Boot.StorageServiceApiApplication.executor": "Run",
-    "Spring Boot.StorageServiceDomainApplication (1).executor": "Run",
-    "Spring Boot.StorageServiceDomainApplication.executor": "Run",
-    "Spring Boot.StorageSeviceDomainApplication.executor": "Run",
-    "Spring Boot.StorageTaskApplication.executor": "Run",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "jdk.selected.JAVA_MODULE": "21",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/ILay/IdeaProjects/storage-task/src/main/resources/db/changelog/insert",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "run.configurations.included.in.services": "true",
-    "service.view.auto.scroll.to.source": "true",
-    "settings.editor.selected.configurable": "preferences.sourceCode.Java",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Docker.Dockerfile.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.docker-compose.yml.app: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.docker-compose.yml.storage: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.docker-compose.yml: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.resources/Dockerfile.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.storage-service-domain.app: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.storage-service-domain.storage-task: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.storage-service-domain/src/main/resources/Dockerfile build.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.storage-service-domain: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.storage-sevice-domain: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ProductServiceTest.testDeleteProductById.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ProductServiceTest.testDeleteProductByIdNotFound.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ProductServiceTest.testFindAllProducts.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ProductServiceTest.testFindProductById.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ProductServiceTest.testFindProductByIdNotFound.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ProductServiceTest.testSaveProduct.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ProductServiceTest.testUpdateProduct.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ProductServiceTest.testUpdateProductNotFound.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StorageSeviceDomainApplicationTests.contextLoads.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.storage-service-domain [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.storage-service-domain [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.storage-task [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.storage-task [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.storage-task [org.apache.maven.plugins:maven-install-plugin:3.1.1:install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.storage-task [org.apache.maven.plugins:maven-install-plugin:3.1.3:install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.storage-task [package].executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;Spring Boot.StorageServiceApiApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.StorageServiceDomainApplication (1).executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.StorageServiceDomainApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.StorageSeviceDomainApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.StorageTaskApplication.executor&quot;: &quot;Run&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;21&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/ILay/IdeaProjects/storage-task/src/main/resources/db/changelog/insert&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
+    &quot;service.view.auto.scroll.to.source&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.Java&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
@@ -175,6 +138,8 @@
       <recent name="org.telatenko.storagesevicedomain.repositories" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="org.telatenko.storagesevicedomain.controller" />
+      <recent name="org.telatenko.storagesevicedomain.service" />
       <recent name="org.telatenko.storagesevicedomain.services" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -328,7 +293,8 @@
       <workItem from="1724858012033" duration="10354000" />
       <workItem from="1724904617946" duration="6312000" />
       <workItem from="1724941457685" duration="6059000" />
-      <workItem from="1724991124561" duration="32919000" />
+      <workItem from="1724991124561" duration="33703000" />
+      <workItem from="1725039182202" duration="3750000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -362,7 +328,15 @@
       <option name="project" value="LOCAL" />
       <updated>1724926900173</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="commit №2&#10;-Миграции переписаны в sql и xml&#10;-application-local теперь рабоатет&#10;-Сделал Dockerfile и docker-compose.yml&#10;-Тесты пока что не писал &#10;-Не понял как сделать Пагинацию праввильно, чтобы из коробки доставлась">
+      <option name="closed" value="true" />
+      <created>1725026593124</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1725026593124</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -382,6 +356,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initial commit" />
     <MESSAGE value="initial commit&#10;Сделал: CRUD, миграции Liquibase" />
-    <option name="LAST_COMMIT_MESSAGE" value="initial commit&#10;Сделал: CRUD, миграции Liquibase" />
+    <MESSAGE value="commit №2&#10;-Миграции переписаны в sql и xml&#10;-application-local теперь рабоатет&#10;-Сделал Dockerfile и docker-compose.yml&#10;-Тесты пока что не писал &#10;-Не понял как сделать Пагинацию праввильно, чтобы из коробки доставлась" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit №2&#10;-Миграции переписаны в sql и xml&#10;-application-local теперь рабоатет&#10;-Сделал Dockerfile и docker-compose.yml&#10;-Тесты пока что не писал &#10;-Не понял как сделать Пагинацию праввильно, чтобы из коробки доставлась" />
   </component>
 </project>
