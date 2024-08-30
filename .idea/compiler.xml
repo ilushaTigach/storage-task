@@ -18,18 +18,19 @@
           <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.5.5.Final/mapstruct-processor-1.5.5.Final.jar" />
           <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.5.5.Final/mapstruct-1.5.5.Final.jar" />
         </processorPath>
-        <module name="storage-service-domain" />
+        <module name="storage-task" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="storage-service-api" target="21" />
+      <module name="storage-service-domain" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="storage-service-api" options="-parameters" />
       <module name="storage-service-domain" options="-parameters -Amapstruct.defaultComponentModel=spring" />
-      <module name="storage-task" options="" />
+      <module name="storage-task" options="-parameters -Amapstruct.defaultComponentModel=spring" />
     </option>
   </component>
 </project>

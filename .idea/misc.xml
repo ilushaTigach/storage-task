@@ -13,6 +13,7 @@
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/storage-service-api/pom.xml" />
+        <option value="$PROJECT_DIR$/storage-service-domain/pom.xml" />
       </set>
     </option>
   </component>
