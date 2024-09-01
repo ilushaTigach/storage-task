@@ -13,7 +13,7 @@ spring:
     change-log: db/changelog/db.changelog-master.xml
 server:
   port: ${SERVER_PORT:8080}
-logging:
-  level:
-    org.hibernate: DEBUG
-    org.hibernate.type.descriptor.sql: TRACE
+#logging:
+#  level:
+#    org.hibernate: DEBUG
+#    org.hibernate.type.descriptor.sql: TRACE

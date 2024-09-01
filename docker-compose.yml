@@ -12,7 +12,7 @@ services:
     depends_on:
       - storage
     environment:
-#      - SPRING_PROFILES_ACTIVE=local
+      - SPRING_PROFILES_ACTIVE=local
       - SPRING_DATASOURCE_URL=jdbc:postgresql://storage:5432/storage
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=123

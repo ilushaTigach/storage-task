@@ -4,7 +4,6 @@ import org.mapstruct.Mapper;
 import org.telatenko.storagesevicedomain.model.ProductResponse;
 import org.telatenko.storagesevicedomain.dto.ProductDto;
 import org.telatenko.storagesevicedomain.persistence.ProductEntity;
-
 import java.util.List;
 
 @Mapper
