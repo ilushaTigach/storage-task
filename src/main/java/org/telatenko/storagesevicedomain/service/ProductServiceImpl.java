@@ -5,6 +5,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.telatenko.storagesevicedomain.annotation.MeasureExecutionTime;
+import org.telatenko.storagesevicedomain.annotation.MeasureTransactionalExecutionTime;
 import org.telatenko.storagesevicedomain.exeption.ArticleExistsExeption;
 import org.telatenko.storagesevicedomain.exeption.DeleteObjectExeption;
 import org.telatenko.storagesevicedomain.mapper.CreateProductMapper;
@@ -39,6 +41,7 @@ public class ProductServiceImpl implements ProductService {
      * @param pageable Объект пагинации.
      * @return Страница с продуктами в формате DTO.
      */
+    @MeasureExecutionTime
     public Page<ProductDto> findAllProducts(Pageable pageable) {
         Page<ProductEntity> productPage = productRepository.findAll(pageable);
         return productPage.map(findAllProductsMapper::toDto);
@@ -51,6 +54,7 @@ public class ProductServiceImpl implements ProductService {
      * @return Продукт в формате DTO.
      * @throws NotFoundProductException если продукт не найден.
      */
+    @MeasureTransactionalExecutionTime
     @Transactional(readOnly = true)
     public ProductDto findProductById(final UUID id) {
         return readProductMapper.DtoToEntity(productRepository.findById(id)

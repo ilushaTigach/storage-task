@@ -5,8 +5,8 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.11.xsd">
 
-    <changeSet id="insert-into-products" author="Telyatenko-Ilay">
-        <sqlFile encoding="UTF-8" path="sql/insert-into-products.sql"
+    <changeSet id="1M_insert-into-products" author="Telyatenko-Ilay">
+        <sqlFile encoding="UTF-8" path="sql/1M_insert-into-products_forPostgres.sql"
                  relativeToChangelogFile="true"/>
     </changeSet>
 
