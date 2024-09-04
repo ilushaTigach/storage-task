@@ -25,7 +25,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.telatenko.storagesevicedomain.dto.ProductDto;
 import org.telatenko.storagesevicedomain.dto.UpdateProductDto;
 import org.telatenko.storagesevicedomain.exeption.ArticleExistsExeption;
-import org.telatenko.storagesevicedomain.exeption.NotFoundProductException;
+import org.telatenko.storagesevicedomain.exeption.ProductNotFoundException;
 import org.telatenko.storagesevicedomain.mapper.CreateProductMapper;
 import org.telatenko.storagesevicedomain.mapper.FindAllProductsMapper;
 import org.telatenko.storagesevicedomain.mapper.ReadProductMapper;
@@ -97,12 +97,12 @@ public class ProductServiceImplTest {
     }
 
     @Test
-    @DisplayName("Тест метода findProductById на выброс NotFoundProductException")
+    @DisplayName("Тест метода findProductById на выброс ProductNotFoundException")
     void testFindProductByIdThrowsException() {
         UUID nonExistentId = UUID.randomUUID();
         when(productRepository.findById(nonExistentId)).thenReturn(Optional.empty());
 
-        NotFoundProductException exception = assertThrows(NotFoundProductException.class, () -> {
+        ProductNotFoundException exception = assertThrows(ProductNotFoundException.class, () -> {
             productServiceImpl.findProductById(nonExistentId);
         });
 
@@ -201,7 +201,7 @@ public class ProductServiceImplTest {
     }
 
     @Test
-    @DisplayName("Тест метода updateProduct на выброс NotFoundProductException, если продукт не найден")
+    @DisplayName("Тест метода updateProduct на выброс ProductNotFoundException, если продукт не найден")
     void testUpdateProductNotFound() {
         UUID nonExistentId = UUID.randomUUID();
         UpdateProductDto updateProductDto = new UpdateProductDto("Car", "777", "Simple description", ProductType.TECH,
@@ -210,7 +210,7 @@ public class ProductServiceImplTest {
 
         when(productRepository.findById(nonExistentId)).thenReturn(Optional.empty());
 
-        NotFoundProductException exception = assertThrows(NotFoundProductException.class, () -> {
+        ProductNotFoundException exception = assertThrows(ProductNotFoundException.class, () -> {
             productServiceImpl.updateProduct(nonExistentId, updateProductDto);
         });
 

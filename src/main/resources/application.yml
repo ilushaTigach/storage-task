@@ -16,7 +16,7 @@ server:
 app:
   scheduling:
     enable: true
-    period: 60000
+    period: 120000000
     priceMultiplier: 10.1
     optimization: true
 logging:

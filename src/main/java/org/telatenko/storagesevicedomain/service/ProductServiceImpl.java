@@ -9,12 +9,12 @@ import org.telatenko.storagesevicedomain.annotation.MeasureExecutionTime;
 import org.telatenko.storagesevicedomain.annotation.MeasureTransactionalExecutionTime;
 import org.telatenko.storagesevicedomain.exeption.ArticleExistsExeption;
 import org.telatenko.storagesevicedomain.exeption.DeleteObjectExeption;
+import org.telatenko.storagesevicedomain.exeption.ProductNotFoundException;
 import org.telatenko.storagesevicedomain.mapper.CreateProductMapper;
 import org.telatenko.storagesevicedomain.mapper.FindAllProductsMapper;
 import org.telatenko.storagesevicedomain.mapper.ReadProductMapper;
 import org.telatenko.storagesevicedomain.dto.UpdateProductDto;
 import org.telatenko.storagesevicedomain.dto.ProductDto;
-import org.telatenko.storagesevicedomain.exeption.NotFoundProductException;
 import org.telatenko.storagesevicedomain.persistence.ProductEntity;
 import org.telatenko.storagesevicedomain.persistence.ProductRepository;
 import java.time.LocalDate;
@@ -52,13 +52,13 @@ public class ProductServiceImpl implements ProductService {
      *
      * @param id Идентификатор продукта.
      * @return Продукт в формате DTO.
-     * @throws NotFoundProductException если продукт не найден.
+     * @throws ProductNotFoundException если продукт не найден.
      */
     @MeasureTransactionalExecutionTime
     @Transactional(readOnly = true)
     public ProductDto findProductById(final UUID id) {
         return readProductMapper.DtoToEntity(productRepository.findById(id)
-                .orElseThrow(() -> new NotFoundProductException("id", id.toString())));
+                .orElseThrow(() -> new ProductNotFoundException("id", id.toString())));
     }
 
     /**
@@ -101,13 +101,13 @@ public class ProductServiceImpl implements ProductService {
      * @param id Идентификатор продукта.
      * @param updateProductDto Продукт в формате DTO для обновления.
      * @return Идентификатор обновленного продукта.
-     * @throws NotFoundProductException если продукт не найден.
+     * @throws ProductNotFoundException если продукт не найден.
      * @throws ArticleExistsExeption если артикул уже существует.
      */
     @Transactional
     public UUID updateProduct(final UUID id, final UpdateProductDto updateProductDto) {
         ProductEntity productEntity = productRepository.findById(id)
-                .orElseThrow(() -> new NotFoundProductException("id", id.toString()));
+                .orElseThrow(() -> new ProductNotFoundException("id", id.toString()));
 
         String article = updateProductDto.getArticle();
         if (article != null && !article.equals(productEntity.getArticle())) {

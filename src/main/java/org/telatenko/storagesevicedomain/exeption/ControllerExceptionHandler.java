@@ -14,7 +14,7 @@ import java.util.Map;
  * Этот класс предоставляет методы для обработки различных исключений и возвращения соответствующих HTTP ответов.
  */
 @RestControllerAdvice
-public class ExceptionHandlerController {
+public class ControllerExceptionHandler {
 
     /**
      * Обрабатывает исключения, связанные с нарушением ограничений валидации.
@@ -40,13 +40,13 @@ public class ExceptionHandlerController {
     }
 
     /**
-     * Обрабатывает исключение NotFoundProductException.
+     * Обрабатывает исключение ProductNotFoundException.
      *
-     * @param exception Исключение NotFoundProductException.
+     * @param exception Исключение ProductNotFoundException.
      * @return ResponseEntity с объектом ResponseError, содержащим информацию об ошибке.
      */
-    @ExceptionHandler(value = {NotFoundProductException.class})
-    public ResponseEntity<ResponseError> handleException(NotFoundProductException exception) {
+    @ExceptionHandler(value = {ProductNotFoundException.class})
+    public ResponseEntity<ResponseError> handleException(ProductNotFoundException exception) {
         ResponseError responseError = new ResponseError(
                 HttpStatus.NOT_FOUND,
                 exception.getMessage()

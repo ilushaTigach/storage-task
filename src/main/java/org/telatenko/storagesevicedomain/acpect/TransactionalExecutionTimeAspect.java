@@ -7,6 +7,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.support.TransactionSynchronizationAdapter;
+import org.springframework.transaction.support.TransactionSynchronizationManager;
 
 @Aspect
 @Component
@@ -20,8 +22,18 @@ public class TransactionalExecutionTimeAspect {
     public Object measureExecutionTime(ProceedingJoinPoint joinPoint) throws Throwable {
         long start = System.currentTimeMillis();
         Object proceed = joinPoint.proceed();
-        long executionTime = System.currentTimeMillis() - start;
-        logger.info("{} executed in {} ms", joinPoint.getSignature(), executionTime);
+        if (TransactionSynchronizationManager.isActualTransactionActive()) {
+            TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronizationAdapter() {
+                @Override
+                public void afterCommit() {
+                    long executionTime = System.currentTimeMillis() - start;
+                    logger.info("{} executed in {} ms", joinPoint.getSignature(), executionTime);
+                }
+            });
+        } else {
+            long executionTime = System.currentTimeMillis() - start;
+            logger.info("{} executed in {} ms", joinPoint.getSignature(), executionTime);
+        }
         return proceed;
     }
 }
