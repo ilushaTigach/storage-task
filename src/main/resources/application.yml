@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: storage-task
+  datasource:
+    url: jdbc:postgresql://localhost:5432/storage
+    username: root
+    password: ${PWD}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  liquibase:
+    change-log: db/changelog/db.changelog-master.xml
+server:
+  port: ${SERVER_PORT:8080}
+app:
+  scheduling:
+    enable: true
+    period: 120000000
+    priceMultiplier: 10.1
+    optimization: true
+logging:
+  level:
+    org.hibernate: DEBUG
+    org.hibernate.type.descriptor.sql: TRACE

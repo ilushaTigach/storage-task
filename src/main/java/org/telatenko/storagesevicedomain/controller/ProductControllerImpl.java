@@ -1,0 +1,91 @@
+package org.telatenko.storagesevicedomain.controller;
+
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+import org.telatenko.storagesevicedomain.dto.ProductDto;
+import org.telatenko.storagesevicedomain.mapper.CreateProductMapper;
+import org.telatenko.storagesevicedomain.mapper.FindAllProductsMapper;
+import org.telatenko.storagesevicedomain.mapper.ReadProductMapper;
+import org.telatenko.storagesevicedomain.mapper.UpdateProductMapper;
+import org.telatenko.storagesevicedomain.model.CreateProductRequest;
+import org.telatenko.storagesevicedomain.model.ProductResponse;
+import org.telatenko.storagesevicedomain.dto.UpdateProductDto;
+import org.telatenko.storagesevicedomain.model.UpdateProductRequest;
+import org.telatenko.storagesevicedomain.service.ProductServiceImpl;
+import java.util.List;
+import java.util.UUID;
+
+/**
+ * Реализация контроллера для управления продуктами.
+ * Этот контроллер предоставляет RESTful API для выполнения операций CRUD над продуктами.
+ */
+@RestController
+@Validated
+@RequiredArgsConstructor
+public class ProductControllerImpl implements ProductController {
+
+    private final ProductServiceImpl productServiceImpl;
+    private final CreateProductMapper createProductMapper;
+    private final ReadProductMapper readProductMapper;
+    private final FindAllProductsMapper findAllProductsMapper;
+    private final UpdateProductMapper updateProductMapper;
+
+    /**
+     * Получает список всех продуктов с пагинацией.
+     *
+     * @param pageable Объект пагинации, по умолчанию размер страницы равен 3.
+     * @return Список ответов с информацией о продуктах.
+     */
+    public List<ProductResponse> getAllProducts(@PageableDefault(size = 3) Pageable pageable) {
+        Page<ProductDto> productDtos = productServiceImpl.findAllProducts(pageable);
+        return findAllProductsMapper.toDtos(productDtos.getContent());
+    }
+
+    /**
+     * Находит продукт по его уникальному идентификатору.
+     *
+     * @param id Идентификатор продукта.
+     * @return Ответ с информацией о продукте.
+     */
+    public ProductResponse findProductById(@Valid @PathVariable("id") UUID id) {
+        ProductDto productDto = productServiceImpl.findProductById(id);
+        return readProductMapper.DtoToResponse(productDto);
+    }
+
+    /**
+     * Сохраняет новый продукт.
+     *
+     * @param createProductRequest Запрос на создание продукта.
+     * @return Идентификатор сохраненного продукта.
+     */
+    public UUID saveProduct(@Valid @RequestBody CreateProductRequest createProductRequest) {
+        ProductDto productDto = createProductMapper.RequestToDto(createProductRequest);
+        return productServiceImpl.saveProduct(productDto);
+    }
+
+    /**
+     * Удаляет продукт по его идентификатору.
+     *
+     * @param id Идентификатор продукта.
+     */
+    public void deleteProductById(@Valid @PathVariable("id") UUID id) {
+        productServiceImpl.deleteProductById(id);
+    }
+
+    /**
+     * Обновляет информацию о продукте.
+     *
+     * @param id Идентификатор продукта.
+     * @param updateProductRequest Запрос на обновление продукта.
+     * @return Иmvn spring-boot:runдентификатор обновленного продукта.
+     */
+    public UUID updateProduct(@Valid @PathVariable UUID id, @Valid @RequestBody UpdateProductRequest updateProductRequest) {
+        UpdateProductDto updateProductDto = updateProductMapper.requestToDto(updateProductRequest);
+        return productServiceImpl.updateProduct(id, updateProductDto);
+    }
+}

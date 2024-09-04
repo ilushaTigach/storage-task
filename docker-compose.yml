@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+  app:
+    image: storage-task
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: storage-task-app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - storage
+    environment:
+      - SPRING_PROFILES_ACTIVE=local
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://storage:5432/storage
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=123
+
+  storage:
+    image: 'postgres:16'
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: 123
+      POSTGRES_DB: storage
+      PGDATA: "/var/lib/postgresql/data/docker-data/storage"
+    ports:
+      - "5432:5432"
