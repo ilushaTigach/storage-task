@@ -16,9 +16,11 @@ import org.telatenko.storagesevicedomain.model.CreateProductRequest;
 import org.telatenko.storagesevicedomain.model.ProductResponse;
 import org.telatenko.storagesevicedomain.dto.UpdateProductDto;
 import org.telatenko.storagesevicedomain.model.UpdateProductRequest;
+import org.telatenko.storagesevicedomain.seach.criteria.SearchCriteria;
 import org.telatenko.storagesevicedomain.service.ProductServiceImpl;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 /**
  * Реализация контроллера для управления продуктами.
@@ -87,5 +89,18 @@ public class ProductControllerImpl implements ProductController {
     public UUID updateProduct(@Valid @PathVariable UUID id, @Valid @RequestBody UpdateProductRequest updateProductRequest) {
         UpdateProductDto updateProductDto = updateProductMapper.requestToDto(updateProductRequest);
         return productServiceImpl.updateProduct(id, updateProductDto);
+    }
+
+    /**
+     * Поиск продуктов по заданным критериям.
+     *
+     * @param searchCriteriaList Список критериев поиска, которые определяют условия фильтрации продуктов.
+     *                           Каждый критерий содержит поле, операцию и значение для сравнения.
+     * @return Список объектов {@link ProductResponse}, представляющих найденные продукты,
+     *         отфильтрованные по заданным критериям.
+     */
+    public List<ProductResponse> searchProducts(@RequestBody List<SearchCriteria> searchCriteriaList) {
+        List<ProductDto> productDtos = productServiceImpl.searchProducts(searchCriteriaList);
+        return productDtos.stream().map(readProductMapper::DtoToResponse).collect(Collectors.toList());
     }
 }

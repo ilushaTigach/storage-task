@@ -1,5 +1,10 @@
 package org.telatenko.storagesevicedomain.service;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,10 +22,14 @@ import org.telatenko.storagesevicedomain.dto.UpdateProductDto;
 import org.telatenko.storagesevicedomain.dto.ProductDto;
 import org.telatenko.storagesevicedomain.persistence.ProductEntity;
 import org.telatenko.storagesevicedomain.persistence.ProductRepository;
+import org.telatenko.storagesevicedomain.seach.criteria.SearchCriteria;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 /**
  * Реализация сервиса для управления продуктами.
@@ -34,6 +43,7 @@ public class ProductServiceImpl implements ProductService {
     private final CreateProductMapper createProductMapper;
     private final ReadProductMapper readProductMapper;
     private final FindAllProductsMapper findAllProductsMapper;
+    private final EntityManager entityManager;
 
     /**
      * Получает список всех продуктов с пагинацией.
@@ -128,6 +138,38 @@ public class ProductServiceImpl implements ProductService {
         productEntity.setPrice(updateProductDto.getPrice());
         productEntity.setQuantity(updateProductDto.getQuantity());
         return productRepository.save(productEntity).getId();
+    }
+
+    @Transactional(readOnly = true)
+    public List<ProductDto> searchProducts(List<SearchCriteria> searchCriteriaList) {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<ProductEntity> query = cb.createQuery(ProductEntity.class);
+        Root<ProductEntity> root = query.from(ProductEntity.class);
+
+        List<Predicate> predicates = new ArrayList<>();
+        for (SearchCriteria criteria : searchCriteriaList) {
+            Predicate predicate = createPredicate(root, cb, criteria);
+            predicates.add(predicate);
+        }
+
+        query.where(predicates.toArray(new Predicate[0]));
+        List<ProductEntity> resultList = entityManager.createQuery(query).getResultList();
+        return resultList.stream().map(findAllProductsMapper::toDto).collect(Collectors.toList());
+    }
+
+    private <T> Predicate createPredicate(Root<ProductEntity> root, CriteriaBuilder cb, SearchCriteria<T> criteria) {
+        switch (criteria.getOperation()) {
+            case EQUALS:
+                return criteria.getStrategy().getEqPattern(root.get(criteria.getField()), criteria.getValue(), cb);
+            case LIKE:
+                return criteria.getStrategy().getLikePattern(root.get(criteria.getField()), criteria.getValue(), cb);
+            case GREATER_THAN_OR_EQUAL:
+                return criteria.getStrategy().getLeftLimitPattern(root.get(criteria.getField()), criteria.getValue(), cb);
+            case LESS_THAN_OR_EQUAL:
+                return criteria.getStrategy().getRightLimitPattern(root.get(criteria.getField()), criteria.getValue(), cb);
+            default:
+                throw new IllegalArgumentException("Unsupported operation: " + criteria.getOperation());
+        }
     }
 }
 

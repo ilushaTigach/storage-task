@@ -17,7 +17,7 @@ public class BigDecimalPredicatStrategy implements PredicateStrategy<BigDecimal>
     }
 
     public Predicate getRightLimitPattern(Expression<BigDecimal> expression, BigDecimal value, CriteriaBuilder cb){
-        return cb.equal(expression, value);
+        return cb.lessThanOrEqualTo(expression, value);
     }
 
     public Predicate getLikePattern(Expression<BigDecimal> expression, BigDecimal value, CriteriaBuilder cb){
