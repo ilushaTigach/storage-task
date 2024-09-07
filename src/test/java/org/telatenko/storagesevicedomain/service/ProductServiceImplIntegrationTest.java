@@ -89,7 +89,7 @@ public class ProductServiceImplIntegrationTest {
 
         SearchCriteria<String> criteria = new StringSearchCriteria("title", OperationType.EQUALS, "Product 1");
 
-        List<ProductDto> result = productService.searchProducts(List.of(criteria));
+        List<ProductDto> result = productService.searchProducts(List.of(criteria), "USD");
 
         assertEquals(1, result.size());
         assertEquals("Product 1", result.get(0).getTitle());
@@ -101,7 +101,7 @@ public class ProductServiceImplIntegrationTest {
 
         SearchCriteria<String> criteria = new StringSearchCriteria("title", OperationType.LIKE, "Product%");
 
-        List<ProductDto> result = productService.searchProducts(List.of(criteria));
+        List<ProductDto> result = productService.searchProducts(List.of(criteria), "USD");
 
         assertEquals(2, result.size());
     }
@@ -112,7 +112,7 @@ public class ProductServiceImplIntegrationTest {
 
         SearchCriteria<BigDecimal> criteria = new BigDecimalSearchCriteria("price", OperationType.GREATER_THAN_OR_EQUAL, BigDecimal.valueOf(150.0));
 
-        List<ProductDto> result = productService.searchProducts(List.of(criteria));
+        List<ProductDto> result = productService.searchProducts(List.of(criteria), "USD");
 
         assertEquals(1, result.size());
         assertEquals("Product 2", result.get(0).getTitle());
@@ -124,7 +124,7 @@ public class ProductServiceImplIntegrationTest {
 
         SearchCriteria<BigDecimal> criteria = new BigDecimalSearchCriteria("price", OperationType.LESS_THAN_OR_EQUAL, BigDecimal.valueOf(150.0));
 
-        List<ProductDto> result = productService.searchProducts(List.of(criteria));
+        List<ProductDto> result = productService.searchProducts(List.of(criteria), "USD");
 
         assertEquals(1, result.size());
         assertEquals("Product 1", result.get(0).getTitle());
@@ -139,7 +139,7 @@ public class ProductServiceImplIntegrationTest {
         SearchCriteria<LocalDateTime> createdAdEquals = new LocalDateTimeSearchCriteria("createdAd", OperationType.EQUALS, LocalDateTime.parse("2024-09-05T10:49:31"));
         SearchCriteria<String> titleLike = new StringSearchCriteria("title", OperationType.LIKE, "Watch");
 
-        List<ProductDto> result = productService.searchProducts(List.of(priceLessThanOrEqual, priceGreaterThanOrEqual, createdAdEquals, titleLike));
+        List<ProductDto> result = productService.searchProducts(List.of(priceLessThanOrEqual, priceGreaterThanOrEqual, createdAdEquals, titleLike), "USD");
 
         assertEquals(0, result.size());
     }

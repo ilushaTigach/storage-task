@@ -9,9 +9,9 @@ import java.util.UUID;
 
 public interface ProductService {
 
-    Page<ProductDto> findAllProducts(Pageable pageable);
+    Page<ProductDto> findAllProducts(Pageable pageable, String currency);
 
-    ProductDto findProductById(@Valid UUID id);
+    ProductDto findProductById(final UUID id, String currency);
 
     UUID saveProduct(@Valid ProductDto product);
 

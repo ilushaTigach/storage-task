@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.telatenko.storagesevicedomain.annotation.MeasureExecutionTime;
 import org.telatenko.storagesevicedomain.annotation.MeasureTransactionalExecutionTime;
+import org.telatenko.storagesevicedomain.currency.service.ExchangeRateService;
 import org.telatenko.storagesevicedomain.exeption.ArticleExistsExeption;
 import org.telatenko.storagesevicedomain.exeption.DeleteObjectExeption;
 import org.telatenko.storagesevicedomain.exeption.ProductNotFoundException;
@@ -23,10 +24,12 @@ import org.telatenko.storagesevicedomain.dto.ProductDto;
 import org.telatenko.storagesevicedomain.persistence.ProductEntity;
 import org.telatenko.storagesevicedomain.persistence.ProductRepository;
 import org.telatenko.storagesevicedomain.seach.criteria.SearchCriteria;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -44,6 +47,8 @@ public class ProductServiceImpl implements ProductService {
     private final ReadProductMapper readProductMapper;
     private final FindAllProductsMapper findAllProductsMapper;
     private final EntityManager entityManager;
+    private final ExchangeRateService exchangeRateService;
+
 
     /**
      * Получает список всех продуктов с пагинацией.
@@ -52,9 +57,10 @@ public class ProductServiceImpl implements ProductService {
      * @return Страница с продуктами в формате DTO.
      */
     @MeasureExecutionTime
-    public Page<ProductDto> findAllProducts(Pageable pageable) {
+    public Page<ProductDto> findAllProducts(Pageable pageable, String currency) {
         Page<ProductEntity> productPage = productRepository.findAll(pageable);
-        return productPage.map(findAllProductsMapper::toDto);
+        return productPage.map(productEntity ->
+                readProductMapper.convertToDto(productEntity, convertPrice(productEntity.getPrice(), currency)));
     }
 
     /**
@@ -64,11 +70,13 @@ public class ProductServiceImpl implements ProductService {
      * @return Продукт в формате DTO.
      * @throws ProductNotFoundException если продукт не найден.
      */
+
     @MeasureTransactionalExecutionTime
     @Transactional(readOnly = true)
-    public ProductDto findProductById(final UUID id) {
-        return readProductMapper.DtoToEntity(productRepository.findById(id)
-                .orElseThrow(() -> new ProductNotFoundException("id", id.toString())));
+    public ProductDto findProductById(final UUID id, String currency) {
+        ProductEntity productEntity = productRepository.findById(id)
+                .orElseThrow(() -> new ProductNotFoundException("id", id.toString()));
+        return readProductMapper.convertToDto(productEntity, convertPrice(productEntity.getPrice(), currency));
     }
 
     /**
@@ -141,20 +149,19 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Transactional(readOnly = true)
-    public List<ProductDto> searchProducts(List<SearchCriteria> searchCriteriaList) {
+    public List<ProductDto> searchProducts(List<SearchCriteria> searchCriteriaList, String currency) {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<ProductEntity> query = cb.createQuery(ProductEntity.class);
         Root<ProductEntity> root = query.from(ProductEntity.class);
-
         List<Predicate> predicates = new ArrayList<>();
         for (SearchCriteria criteria : searchCriteriaList) {
             Predicate predicate = createPredicate(root, cb, criteria);
             predicates.add(predicate);
         }
-
         query.where(predicates.toArray(new Predicate[0]));
         List<ProductEntity> resultList = entityManager.createQuery(query).getResultList();
-        return resultList.stream().map(findAllProductsMapper::toDto).collect(Collectors.toList());
+        return resultList.stream().map(productEntity ->
+                readProductMapper.convertToDto(productEntity, convertPrice(productEntity.getPrice(), currency))).collect(Collectors.toList());
     }
 
     private <T> Predicate createPredicate(Root<ProductEntity> root, CriteriaBuilder cb, SearchCriteria<T> criteria) {
@@ -170,6 +177,12 @@ public class ProductServiceImpl implements ProductService {
             default:
                 throw new IllegalArgumentException("Unsupported operation: " + criteria.getOperation());
         }
+    }
+
+    private BigDecimal convertPrice(BigDecimal price, String currency) {
+        Map<String, BigDecimal> exchangeRates = exchangeRateService.getExchangeRates();
+        BigDecimal rate = exchangeRates.getOrDefault(currency, BigDecimal.ONE);
+        return price.multiply(rate);
     }
 }
 

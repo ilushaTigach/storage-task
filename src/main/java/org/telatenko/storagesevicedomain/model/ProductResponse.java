@@ -28,5 +28,7 @@ public class ProductResponse {
     private OffsetDateTime lastModified;
 
     private LocalDate createdAd;
+
+    private String currency;
 }
 

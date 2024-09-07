@@ -11,15 +11,24 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
   liquibase:
     change-log: db/changelog/db.changelog-master.xml
+
+  cache:
+    type: simple
+    cache-names: exchangeRates
+currency:
+  service:
+    url: http://localhost:8081
+    mock: false
+
 server:
   port: ${SERVER_PORT:8080}
 app:
   scheduling:
     enable: true
     period: 120000000
-    priceMultiplier: 10.1
-    optimization: true
-logging:
-  level:
-    org.hibernate: DEBUG
-    org.hibernate.type.descriptor.sql: TRACE
+    priceMultiplier: 1.1
+    optimization: false
+#logging:
+#  level:
+#    org.hibernate: DEBUG
+#    org.hibernate.type.descriptor.sql: TRACE

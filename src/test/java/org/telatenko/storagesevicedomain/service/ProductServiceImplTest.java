@@ -9,7 +9,9 @@ import static org.mockito.Mockito.when;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 import org.junit.jupiter.api.BeforeEach;
@@ -22,19 +24,19 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.ActiveProfiles;
+import org.telatenko.storagesevicedomain.currency.service.ExchangeRateService;
 import org.telatenko.storagesevicedomain.dto.ProductDto;
 import org.telatenko.storagesevicedomain.dto.UpdateProductDto;
 import org.telatenko.storagesevicedomain.exeption.ArticleExistsExeption;
 import org.telatenko.storagesevicedomain.exeption.ProductNotFoundException;
 import org.telatenko.storagesevicedomain.mapper.CreateProductMapper;
-import org.telatenko.storagesevicedomain.mapper.FindAllProductsMapper;
 import org.telatenko.storagesevicedomain.mapper.ReadProductMapper;
 import org.telatenko.storagesevicedomain.modelType.ProductType;
 import org.telatenko.storagesevicedomain.persistence.ProductEntity;
 import org.telatenko.storagesevicedomain.persistence.ProductRepository;
 
 @SpringBootTest
-@ActiveProfiles("test")
+@ActiveProfiles("default")
 public class ProductServiceImplTest {
 
     @Autowired
@@ -50,7 +52,7 @@ public class ProductServiceImplTest {
     private ReadProductMapper readProductMapper;
 
     @MockBean
-    private FindAllProductsMapper findAllProductsMapper;
+    private ExchangeRateService exchangeRateService;
 
     private ProductDto productDto;
     private ProductEntity productEntity;
@@ -77,24 +79,27 @@ public class ProductServiceImplTest {
     void testFindAllProducts() {
         Page<ProductEntity> productPage = new PageImpl<>(List.of(productEntity));
         when(productRepository.findAll(any(Pageable.class))).thenReturn(productPage);
-        when(findAllProductsMapper.toDto(productEntity)).thenReturn(productDto);
+        when(readProductMapper.convertToDto(productEntity, convertPrice(productEntity.getPrice(), "USD"))).thenReturn(productDto);
 
-        Page<ProductDto> result = productServiceImpl.findAllProducts(Pageable.unpaged());
+        Page<ProductDto> result = productServiceImpl.findAllProducts(Pageable.unpaged(), "USD");
 
         assertEquals(1, result.getTotalElements());
-        assertEquals(productDto, result.getContent().getFirst());
+        assertEquals(productDto, result.getContent().get(0));
     }
 
     @Test
     @DisplayName("Тест метода findProductById на возвращение продукта по ID")
     void testFindProductById() {
         when(productRepository.findById(productEntity.getId())).thenReturn(Optional.of(productEntity));
-        when(readProductMapper.DtoToEntity(productEntity)).thenReturn(productDto);
+        // Использовать convertPrice в мокировании
+        when(readProductMapper.convertToDto(productEntity, convertPrice(productEntity.getPrice(), "USD"))).thenReturn(productDto);
 
-        ProductDto result = productServiceImpl.findProductById(productEntity.getId());
+        ProductDto result = productServiceImpl.findProductById(productEntity.getId(), "USD");
 
         assertEquals(productDto, result);
     }
+
+
 
     @Test
     @DisplayName("Тест метода findProductById на выброс ProductNotFoundException")
@@ -103,7 +108,7 @@ public class ProductServiceImplTest {
         when(productRepository.findById(nonExistentId)).thenReturn(Optional.empty());
 
         ProductNotFoundException exception = assertThrows(ProductNotFoundException.class, () -> {
-            productServiceImpl.findProductById(nonExistentId);
+            productServiceImpl.findProductById(nonExistentId, "USD");
         });
 
         String expectedMessage = String.format("ProductEntity with 'id' = %s not found", nonExistentId);
@@ -239,6 +244,13 @@ public class ProductServiceImplTest {
 
         String expectedMessage = String.format("ProductEntity with 'article' = %s already exists. His 'id' = %s", updateProductDto.getArticle(), existingProductEntity.getId().toString());
         assertEquals(expectedMessage, exception.getMessage());
+    }
+
+    protected BigDecimal convertPrice(BigDecimal price, String currency) {
+        Map<String, BigDecimal> exchangeRatesMap = new HashMap<>();
+        exchangeRatesMap.put("USD", BigDecimal.valueOf(98.5));
+        when(exchangeRateService.getExchangeRates()).thenReturn(exchangeRatesMap);
+        return price.multiply(exchangeRatesMap.getOrDefault(currency, BigDecimal.ONE));
     }
 }
 

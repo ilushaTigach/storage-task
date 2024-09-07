@@ -6,10 +6,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.telatenko.storagesevicedomain.currency.provider.CurrencyProvider;
 import org.telatenko.storagesevicedomain.dto.ProductDto;
 import org.telatenko.storagesevicedomain.mapper.CreateProductMapper;
-import org.telatenko.storagesevicedomain.mapper.FindAllProductsMapper;
 import org.telatenko.storagesevicedomain.mapper.ReadProductMapper;
 import org.telatenko.storagesevicedomain.mapper.UpdateProductMapper;
 import org.telatenko.storagesevicedomain.model.CreateProductRequest;
@@ -34,8 +36,8 @@ public class ProductControllerImpl implements ProductController {
     private final ProductServiceImpl productServiceImpl;
     private final CreateProductMapper createProductMapper;
     private final ReadProductMapper readProductMapper;
-    private final FindAllProductsMapper findAllProductsMapper;
     private final UpdateProductMapper updateProductMapper;
+    private final CurrencyProvider currencyProvider;
 
     /**
      * Получает список всех продуктов с пагинацией.
@@ -44,8 +46,11 @@ public class ProductControllerImpl implements ProductController {
      * @return Список ответов с информацией о продуктах.
      */
     public List<ProductResponse> getAllProducts(@PageableDefault(size = 3) Pageable pageable) {
-        Page<ProductDto> productDtos = productServiceImpl.findAllProducts(pageable);
-        return findAllProductsMapper.toDtos(productDtos.getContent());
+        String currency = currencyProvider.getCurrency();
+        Page<ProductDto> productDtos = productServiceImpl.findAllProducts(pageable, currency);
+        return productDtos.getContent().stream()
+                .map(productDto -> readProductMapper.DtoToResponse(productDto, currency))
+                .collect(Collectors.toList());
     }
 
     /**
@@ -55,8 +60,9 @@ public class ProductControllerImpl implements ProductController {
      * @return Ответ с информацией о продукте.
      */
     public ProductResponse findProductById(@Valid @PathVariable("id") UUID id) {
-        ProductDto productDto = productServiceImpl.findProductById(id);
-        return readProductMapper.DtoToResponse(productDto);
+        String currency = currencyProvider.getCurrency();
+        ProductDto productDto = productServiceImpl.findProductById(id, currency);
+        return readProductMapper.DtoToResponse(productDto, currency);
     }
 
     /**
@@ -100,7 +106,10 @@ public class ProductControllerImpl implements ProductController {
      *         отфильтрованные по заданным критериям.
      */
     public List<ProductResponse> searchProducts(@RequestBody List<SearchCriteria> searchCriteriaList) {
-        List<ProductDto> productDtos = productServiceImpl.searchProducts(searchCriteriaList);
-        return productDtos.stream().map(readProductMapper::DtoToResponse).collect(Collectors.toList());
+        String currency = currencyProvider.getCurrency();
+        List<ProductDto> productDtos = productServiceImpl.searchProducts(searchCriteriaList, currency);
+        return productDtos.stream()
+                .map(productDto -> readProductMapper.DtoToResponse(productDto, currency))
+                .collect(Collectors.toList());
     }
 }

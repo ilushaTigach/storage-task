@@ -40,4 +40,5 @@ public class ProductDto {
 
     @Schema(description = "Дата и время создания товара")
     final private LocalDate createdAd;
+
 }

@@ -15,6 +15,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.telatenko.storagesevicedomain.currency.provider.CurrencyProvider;
 import org.telatenko.storagesevicedomain.dto.ProductDto;
 import org.telatenko.storagesevicedomain.dto.UpdateProductDto;
 import org.telatenko.storagesevicedomain.mapper.CreateProductMapper;
@@ -58,16 +59,20 @@ public class ProductControllerImplTest {
     @MockBean
     private FindAllProductsMapper findAllProductsMapper;
 
+    @MockBean
+    private CurrencyProvider currencyProvider;
+
     @Test
     @DisplayName("Тест метода getAllProducts на возвращение OK статуса")
     void givenPageable_whenGetAllProducts_thenReturnOkStatus() throws Exception {
         Page<ProductDto> productDtos = new PageImpl<>(Collections.emptyList());
-        when(productServiceImpl.findAllProducts(any(Pageable.class))).thenReturn(productDtos);
+        when(currencyProvider.getCurrency()).thenReturn("USD");
+        when(productServiceImpl.findAllProducts(any(Pageable.class), any(String.class))).thenReturn(productDtos);
 
         mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/products")
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
-        verify(productServiceImpl).findAllProducts(any(Pageable.class));
+        verify(productServiceImpl).findAllProducts(any(Pageable.class), any(String.class));
         verifyNoMoreInteractions(productServiceImpl);
     }
 
@@ -78,12 +83,13 @@ public class ProductControllerImplTest {
         ProductDto productDto = new ProductDto(UUID.randomUUID(), "Car", "777", "Simple description", ProductType.TECH,
                 new BigDecimal(100), new BigDecimal(100), OffsetDateTime.parse("2024-08-27T16:41:40.581Z"),
                 LocalDate.parse("2024-08-27"));
-        when(productServiceImpl.findProductById(id)).thenReturn(productDto);
+        when(currencyProvider.getCurrency()).thenReturn("USD");
+        when(productServiceImpl.findProductById(id, "USD")).thenReturn(productDto);
 
         mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/product/{id}", id)
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
-        verify(productServiceImpl).findProductById(id);
+        verify(productServiceImpl).findProductById(id, "USD");
         verifyNoMoreInteractions(productServiceImpl);
     }
 

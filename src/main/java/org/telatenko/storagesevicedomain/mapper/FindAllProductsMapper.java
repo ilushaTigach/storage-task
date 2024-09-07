@@ -8,8 +8,7 @@ import java.util.List;
 
 @Mapper
 public interface FindAllProductsMapper {
-
     ProductDto toDto(ProductEntity productEntity);
 
-    List<ProductResponse> toDtos(List<ProductDto> productDtos);
+    ProductResponse toProductResponse(ProductDto productDto, String currency);
 }
