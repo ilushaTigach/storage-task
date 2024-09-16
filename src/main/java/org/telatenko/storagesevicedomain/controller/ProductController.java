@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.telatenko.storagesevicedomain.model.CreateProductRequest;
 import org.telatenko.storagesevicedomain.model.ProductResponse;
 import org.telatenko.storagesevicedomain.model.UpdateProductRequest;
+import org.telatenko.storagesevicedomain.seach.criteria.SearchCriteria;
+
 import java.util.List;
 import java.util.UUID;
 
@@ -41,4 +43,8 @@ public interface ProductController {
     @Operation(summary = "Изменение параметров товара")
     @PatchMapping("/api/v1/product/{id}")
     UUID updateProduct(@Valid @PathVariable UUID id, @Valid @RequestBody UpdateProductRequest updateProductRequest);
+
+    @Operation(summary = "Многокритериальный поиск")
+    @PostMapping("/api/v1/product/search")
+    public List<ProductResponse> searchProducts(@RequestBody List<SearchCriteria> searchCriteriaList);
 }

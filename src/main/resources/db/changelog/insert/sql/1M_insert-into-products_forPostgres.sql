@@ -9,4 +9,4 @@ SELECT
     100,
     current_timestamp,
     current_date
-FROM generate_series(1, 500000) seq;
+FROM generate_series(1, 5) seq;
